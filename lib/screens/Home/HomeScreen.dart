@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:gym_app/screens/Accounts/AccountsScreen.dart';
 import 'package:gym_app/screens/Attendance/AttendanceScreen.dart';
-import 'package:gym_app/screens/Batch/BatchScreen.dart';
-import 'package:gym_app/screens/Enquiry/EnquiryScreen.dart';
-import 'package:gym_app/screens/Member/MemberScreen.dart';
+import 'package:gym_app/screens/Invoice/InvoiceScreen.dart';
+import 'package:gym_app/screens/Session/SessionScreen.dart';
+import 'package:gym_app/screens/Trainer/TrainerScreen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -23,7 +22,7 @@ class _HomeScreenState extends State<HomeScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Card(
-              elevation: 5,
+              elevation: 2,
               child: Container(
                 padding: const EdgeInsets.all(10),
                 child: const Row(
@@ -42,7 +41,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
             Card(
-              elevation: 5,
+              elevation: 0,
               color: Colors.blue,
               child: Container(
                 padding: const EdgeInsets.all(10),
@@ -61,23 +60,64 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
             ),
-            const SizedBox(
-              height: 10,
+            Card(
+              elevation: 0,
+              color: Colors.greenAccent,
+              child: Container(
+                padding: const EdgeInsets.all(10),
+                child: ListTile(
+                  iconColor: Colors.white,
+                  textColor: Colors.white,
+                  onTap: () {
+                    print("Check Progress");
+                  },
+                  enableFeedback: false,
+                  leading: const Icon(Icons.show_chart),
+                  title: const Text(
+                    "Check Your Progress",
+                    style: TextStyle(fontWeight: FontWeight.w500),
+                  ),
+                ),
+              ),
+            ),
+            Card(
+              elevation: 0,
+              color: Colors.orangeAccent,
+              child: Container(
+                padding: const EdgeInsets.all(10),
+                child: ListTile(
+                  iconColor: Colors.white,
+                  textColor: Colors.white,
+                  onTap: () {
+                    print("Clicked");
+                  },
+                  enableFeedback: false,
+                  leading: const Icon(Icons.fastfood),
+                  title: const Text(
+                    "Check Your Diet",
+                    style: TextStyle(fontWeight: FontWeight.w500),
+                  ),
+                ),
+              ),
             ),
             Container(
-              padding: EdgeInsets.all(5),
-              child: Text("My Subscriptions",style: TextStyle(fontSize: 18,),textAlign: TextAlign.start)),
+                padding: EdgeInsets.all(5),
+                child: Text("My Subscriptions",
+                    style: TextStyle(
+                      fontSize: 18,
+                    ),
+                    textAlign: TextAlign.start)),
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: Row(
                 children: [
                   SizedBox(
                     width: MediaQuery.of(context).size.width * 0.9,
-                    child: _gymCard(),
+                    child: _gymCard(context),
                   ),
                   SizedBox(
                     width: MediaQuery.of(context).size.width * 0.9,
-                    child: _gymCard(),
+                    child: _gymCard(context),
                   ),
                 ],
               ),
@@ -89,7 +129,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 }
 
-Widget _gymCard() {
+Widget _gymCard(BuildContext context) {
   return Card(
     color: Colors.white,
     elevation: 3,
@@ -125,7 +165,10 @@ Widget _gymCard() {
               _iconButtonWithSubtitle(
                 icon: Icons.more_horiz_outlined,
                 onPressed: () {
-                  print("Attendance");
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => AttendanceScreen()));
                 },
                 subtitle: "Attendance",
                 color: Colors.purple,
@@ -133,7 +176,8 @@ Widget _gymCard() {
               _iconButtonWithSubtitle(
                 icon: Icons.inventory_2_rounded,
                 onPressed: () {
-                  print("Invoice");
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => Invoicescreen()));
                 },
                 subtitle: "Invoice",
                 color: Colors.blue,
@@ -141,7 +185,8 @@ Widget _gymCard() {
               _iconButtonWithSubtitle(
                 icon: Icons.access_time,
                 onPressed: () {
-                  print("Session");
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => Sessionscreen()));
                 },
                 subtitle: "Session",
                 color: Colors.red,
@@ -149,7 +194,8 @@ Widget _gymCard() {
               _iconButtonWithSubtitle(
                 icon: Icons.horizontal_distribute_rounded,
                 onPressed: () {
-                  print("Trainer");
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => TrainerScreen()));
                 },
                 subtitle: "Trainer",
                 color: Colors.blue,
@@ -159,7 +205,7 @@ Widget _gymCard() {
                 onPressed: () {
                   print("Settings");
                 },
-                subtitle: "Settings",
+                subtitle: "More",
                 color: Colors.amber,
               ),
             ],
@@ -176,7 +222,7 @@ Widget _iconButtonWithSubtitle({icon, onPressed, subtitle, color}) {
     child: Column(
       children: [
         Container(
-          padding: EdgeInsets.all(5),
+            padding: EdgeInsets.all(5),
             decoration: BoxDecoration(
                 color: color.shade50,
                 borderRadius: const BorderRadius.all(Radius.circular(50))),

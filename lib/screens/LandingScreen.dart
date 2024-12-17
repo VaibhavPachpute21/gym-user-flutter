@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:gym_app/screens/Event/EventScreen.dart';
 import 'package:gym_app/screens/Home/HomeScreen.dart';
 import 'package:gym_app/screens/Profile/ProfileScreen.dart';
+import 'package:gym_app/screens/Progress/ProgressScreen.dart';
+
 class Landingscreen extends StatefulWidget {
   const Landingscreen({super.key});
 
@@ -16,7 +18,7 @@ int _selectedIndex = 0;
   final List<Widget> _widgetOption = [
     HomeScreen(),
     EventScreen(),
-    Profilescreen(),
+    ProgressScreen(),
     Profilescreen()
   ];
 
@@ -39,6 +41,7 @@ void _onItemTapped(int index) {
         child: _widgetOption.elementAt(_selectedIndex),
       ),
       bottomNavigationBar: BottomNavigationBar(
+        showUnselectedLabels: true,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),

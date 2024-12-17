@@ -14,7 +14,7 @@ class _EventScreenState extends State<EventScreen> {
       body:Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          Text("Action Screen")
+          Center(child: Text("No Events"))
         ],
       ),
     );
